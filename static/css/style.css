@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html { scroll-behavior: smooth; }
+
+.project-card {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.project-card:hover {
+    transform: translateY(-12px) scale(1.03);
+    box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.15);
+}
+
+.filter-btn.active {
+    background-color: rgb(37 99 235);
+    color: white;
+}
+
+.skill-bar {
+    height: 12px;
+    background: #e5e7eb;
+    border-radius: 9999px;
+    overflow: hidden;
+    position: relative;
+}
+.dark .skill-bar { background: #374151; }
+.skill-progress {
+    height: 100%;
+    border-radius: 9999px;
+    transition: width 1.5s ease;
+}
