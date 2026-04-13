@@ -21,32 +21,17 @@ jobs:
           username: azureuser
           key: ${{ secrets.AZURE_VM_SSH_KEY }}
           source: "./*"
-          target: "/home/azureuser/myapp"
+          target: "/home/azureuser/muntazer"
 
-      # Step 3: Stop old app (if running) and start new one
-      - name: Restart app on VM
+      # Step 3: SSH and run app in background
+      - name: Run app.py on VM
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.VM_IP_ADDRESS }}
           username: azureuser
           key: ${{ secrets.AZURE_VM_SSH_KEY }}
           script: |
-            cd /home/azureuser/myapp
-
-            echo "Checking for existing app process..."
-
-            PID=$(pgrep -f "python3 app.py")
-
-            if [ -z "$PID" ]; then
-              echo "No existing app running."
-            else
-              echo "App is running with PID $PID. Stopping it..."
-              kill -9 $PID
-              echo "Old app stopped."
-            fi
-
-            echo "Starting new app..."
-
+            cd /home/azureuser/muntazer
+            # Run and fully detach
             nohup python3 app.py > app.log 2>&1 &
-
-            echo "App deployed and running in background."
+            echo "App deployed and running in background"
