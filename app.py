@@ -52,6 +52,7 @@ PROJECTS = [
         "tags": ["Python", "AI", "Automation"],
         "link": "https://github.com/Muntazer72/smart-student-evaluation-system"
     },
+    
     {
         "id": 5,
         "title": "Student Record Evaluator",
